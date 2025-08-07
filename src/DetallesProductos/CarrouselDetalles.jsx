@@ -1,24 +1,22 @@
-
-import React, { useState } from "react";
-
+import { useState } from 'react';
 
 const CarrouselDetalles = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    console.log(currentIndex)
+    console.log(currentIndex);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length,
+    );
   };
 
-  const selectedImg=(index)=>{
-    setCurrentIndex(index)
-  }
-
+  const selectedImg = (index) => {
+    setCurrentIndex(index);
+  };
 
   return (
     <div className="marcoCarrusel">
@@ -32,17 +30,21 @@ const CarrouselDetalles = ({ images }) => {
         <button className="next" onClick={nextSlide}>
           ▶
         </button>
-      </div >
-        
+      </div>
+
       <div className="selector">
-        {images.map((img,index)=> (<img className="selectorImg"  onMouseEnter={()=>selectedImg(index)}  src={img} alt="" />))}
+        {images.map((img, index) => (
+          <img
+            key={index}
+            className="selectorImg"
+            onMouseEnter={() => selectedImg(index)}
+            src={img}
+            alt="ppp"
+          />
+        ))}
       </div>
     </div>
   );
 };
-
-
-
-
 
 export default CarrouselDetalles;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext,useState,useEffect} from 'react';
+import { useContext, useState, useEffect } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -12,136 +12,150 @@ import { CarritoContext } from '../Context/CarritoContext';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { IconButton } from '@mui/material';
 import ContadorProductos from './ContadorProductos';
-import "../Estilos/CarritoEstilo.css"
-
-
+import '../Estilos/CarritoEstilo.css';
 
 export function CarritoDesplegable() {
-  const { listadosProdCarrito, setListadosProdCarrito } = useContext(CarritoContext)
-  const [cantidades, setCantidades] = useState({}); // Guardará las cantidades seleccionadas por producto
-  const [total,setTotal]=useState(0)
-  const actualizarCantidad = (id, cantidad) => {
-    setCantidades((prev) => ({ ...prev, [id]: cantidad }));
+  const { listadosProdCarrito, setListadosProdCarrito } =
+    useContext(CarritoContext);
+
+  const [total, setTotal] = useState(0);
+
+  const precioTotal = (precio, cantidad) => {
+    const pre = precio * cantidad;
+    return pre;
   };
 
-   console.log(total)
-   
-
-   const precioTotal=(precio,cantidad)=>{
-     const pre=precio*cantidad
-      return pre
-   }
-
-   useEffect(() => {
-    let total = 0
-       listadosProdCarrito.map((producto) => {
-      const cantidad = cantidades[producto.id] || 1;
-      total+= producto.precio * cantidad
+  useEffect(() => {
+    let total = 0;
+    listadosProdCarrito.map((producto) => {
+      total += producto.precio * producto.cantidad;
     });
     setTotal(total);
-  }, [listadosProdCarrito, cantidades]);
-   
+  }, [listadosProdCarrito]);
+
   const guardarCarritoEnLocalStorage = (carrito) => {
     localStorage.setItem('carrito', JSON.stringify(carrito));
   };
 
   const eliminar = (id) => {
-    const listaNueva = listadosProdCarrito.filter(prod => prod.id !== id)
-    setListadosProdCarrito(listaNueva)
-    guardarCarritoEnLocalStorage(listaNueva)
-  }
+    const listaNueva = listadosProdCarrito.filter((prod) => prod.id !== id);
+    setListadosProdCarrito(listaNueva);
+    guardarCarritoEnLocalStorage(listaNueva);
+  };
   return (
     <>
-
       <List
         sx={{
-
           maxWidth: 450,
-          width: (listadosProdCarrito.length >= 1) ? "450px" : "",
+          width: listadosProdCarrito.length >= 1 ? '450px' : '',
           bgcolor: 'background.paper',
           position: 'absolute',
           right: '4px',
-          borderRadius: "10px",
-          border: '1px solid #ccc'
+          borderRadius: '10px',
+          border: '1px solid #ccc',
         }}
       >
         {listadosProdCarrito.map((producto) => (
           <>
             <ListItem alignItems="flex-start">
-              <ListItemAvatar sx={{ width: "150px", marginLeft: "-10px" }}>
+              <ListItemAvatar sx={{ width: '150px', marginLeft: '-10px' }}>
                 <img
-                  src="../imagenes/heladera.webp"
+                  src="/imagenes/heladera.webp"
                   alt="Heladera"
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "10px", // Opcional: Agrega esquinas redondeadas
-                    objectFit: "cover",  // Ajusta la imagen para que se vea bien
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '10px', // Opcional: Agrega esquinas redondeadas
+                    objectFit: 'cover', // Ajusta la imagen para que se vea bien
                   }}
                 />
               </ListItemAvatar>
               <ListItemText
                 primary={
-                  <Typography variant="h6" sx={{ fontSize: "20px", fontWeight: "bold" }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: '20px', fontWeight: 'bold' }}
+                  >
                     {producto.nombre}
                   </Typography>
                 }
-                sx={{ marginTop: "30px", marginLeft: "10px" }}
+                sx={{ marginTop: '30px', marginLeft: '10px' }}
                 secondary={
                   <React.Fragment>
                     <Typography
                       component="span"
                       variant="body2"
-                      sx={{ color: 'text.primary', display: 'inline', fontSize: "16px" }}
+                      sx={{
+                        color: 'text.primary',
+                        display: 'inline',
+                        fontSize: '16px',
+                      }}
                     >
                       {producto.descripcion}
                     </Typography>
                     <Typography
                       component="span"
                       variant="body2"
-                      sx={{ display: 'flex', justifyContent: "space-between", flexDirection: "row", fontSize: "20px", fontWeight: "bold", color: 'text.secondary', marginTop: '40px' }}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        flexDirection: 'row',
+                        fontSize: '20px',
+                        fontWeight: 'bold',
+                        color: 'text.secondary',
+                        marginTop: '40px',
+                      }}
                     >
-                     ${precioTotal(producto.precio,cantidades[producto.id])}
-                      <ContadorProductos onCantidadChange={(cantidad) => actualizarCantidad(producto.id, cantidad)}></ContadorProductos>
+                      ${precioTotal(producto.precio, producto.cantidad)}
+                      <ContadorProductos
+                        prodId={producto.id}
+                        prodCantidad={producto.cantidad}
+                        onCantidadChange={() =>
+                          actualizarCantidad(prodId, prodCantidad)
+                        }
+                      ></ContadorProductos>
                     </Typography>
-
-
                   </React.Fragment>
                 }
-
-
-
               />
-              <IconButton color="primary" aria-label="carrito de compras" onClick={() => eliminar(producto.id)}>
-                <DeleteForeverIcon sx={{ color: "#9fa8da" }} />
+              <IconButton
+                color="primary"
+                aria-label="carrito de compras"
+                onClick={() => eliminar(producto.id)}
+              >
+                <DeleteForeverIcon sx={{ color: '#9fa8da' }} />
               </IconButton>
             </ListItem>
             <Divider variant="inset" component="li" />
-          </>))}
+          </>
+        ))}
         {listadosProdCarrito.length > 0 && (
           <div
             style={{
               maxWidth: 450,
-              width: "450px",
+              width: '450px',
               position: 'absolute',
-              background: "#3a648b",
-              marginTop: "2px",
-              borderBottomLeftRadius: "10px",
-              borderBottomRightRadius: "10px",
+              background: '#3a648b',
+              marginTop: '2px',
+              borderBottomLeftRadius: '10px',
+              borderBottomRightRadius: '10px',
               textAlign: 'center',
-              border: "solid 1px black",
-              color: "white",
-              fontSize: "22px"
+              border: 'solid 1px black',
+              color: 'white',
+              fontSize: '22px',
             }}
           >
-            <div className='total'>
+            <div className="total">
               <div>TOTAL</div> <div>${total}</div>
-            </div> 
+            </div>
             <Chip
               sx={{
-                marginTop: "20px", marginBottom: "10px", background: "#a2b5d2", "&:hover": {
-                  background: "#6f8bbd", 
-                  color: "white"
+                marginTop: '20px',
+                marginBottom: '10px',
+                background: '#a2b5d2',
+                '&:hover': {
+                  background: '#6f8bbd',
+                  color: 'white',
                 },
               }}
               label="Procesar la Compra"
@@ -149,11 +163,8 @@ export function CarritoDesplegable() {
               deleteIcon={<DoneIcon />}
             />
           </div>
-
         )}
       </List>
-
     </>
-  )
-
+  );
 }

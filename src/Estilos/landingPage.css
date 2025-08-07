@@ -1,220 +1,189 @@
 .principal {
-    position: relative;
-    background: linear-gradient(0deg, #a2b5d2, #3a648b, #1b365d);
-
-
+  position: relative;
+  background: linear-gradient(0deg, #a2b5d2, #3a648b, #1b365d);
 }
 
-
 .encabezado {
-    background-color: #e6e6e6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 150px;
-    border-bottom: solid 1px black;
+  background-color: #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150px;
+  border-bottom: solid 1px black;
 }
 
 .filtroNegro {
-    background-color: rgba(8, 8, 8, 0.3);
-
+  background-color: rgba(8, 8, 8, 0.3);
 }
 
 .fondoMenu {
-    background-color: #3a648b;
-    display: flex;
-    width: 90%;
-    align-items: baseline;
-    border-radius: 1cap;
-
+  background-color: #3a648b;
+  display: flex;
+  width: 90%;
+  align-items: baseline;
+  border-radius: 1cap;
 }
 
 .cuerpo {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 .cuerpoContainer {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    /* Altura mínima para ocupar toda la pantalla */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Altura mínima para ocupar toda la pantalla */
 }
 
 .cuerpoInside {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    /* Esto asegura que ocupe el espacio restante */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Esto asegura que ocupe el espacio restante */
 }
 
 .cards {
-    display: flex;
-    flex-direction: row;
-   
+  display: flex;
+  flex-direction: row;
 }
 
 .paginationFooter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 0;
-    width: fit-content;
-    background-color: rgba(70, 78, 112, 0.7);
-    border-radius: 10px;
-    align-self: center;
-    border: solid 1px black;
-
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  width: fit-content;
+  background-color: rgba(70, 78, 112, 0.7);
+  border-radius: 10px;
+  align-self: center;
+  border: solid 1px black;
 }
 
 .menu {
-    display: flex;
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 8px;
+  display: flex;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
 }
 
 .menu1 {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    margin: 0;
-    padding-left: 0px;
-
-
-
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin: 0;
+  padding-left: 0px;
 }
 
 .opcion {
-
-    display: flex;
-    list-style: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    align-items: center;
-    justify-content: center;
-    /* Centra el texto dentro del contenedor */
-    border-radius: 50%;
-    width: 80px;
-    /* Ajusta el ancho (debe ser igual al alto) */
-    height: 80px;
-    position: relative;
-    /* Necesario para manejar el posicionamiento del pseudo-elemento */
-    background-size: cover;
-    transition: ease-in-out 0.7s;
+  display: flex;
+  list-style: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  /* Centra el texto dentro del contenedor */
+  border-radius: 50%;
+  width: 80px;
+  /* Ajusta el ancho (debe ser igual al alto) */
+  height: 80px;
+  position: relative;
+  /* Necesario para manejar el posicionamiento del pseudo-elemento */
+  background-size: cover;
+  transition: ease-in-out 0.7s;
 }
 
 .opcion::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url(../../public/imagenes/heladeras.webp);
-    background-size: cover;
-    filter: brightness(90%);
-    /* Oscurece solo la imagen */
-    border-radius: 50%;
-    /* Mantiene la forma circular */
-    z-index: 1;
-    /* Coloca la capa oscura debajo del texto */
-
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../../public/imagenes/heladeras.webp);
+  background-size: cover;
+  filter: brightness(90%);
+  /* Oscurece solo la imagen */
+  border-radius: 50%;
+  /* Mantiene la forma circular */
+  z-index: 1;
+  /* Coloca la capa oscura debajo del texto */
 }
 
 .opcion a {
-
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: large;
-    font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(241, 237, 237);
+  display: flex;
+  /* Hace que el texto se centre */
+  justify-content: center;
+  /* Centra el texto horizontalmente */
+  align-items: center;
+  /* Centra el texto verticalmente */
+  z-index: 2;
+  /* Asegura que el texto esté por encima de la capa oscura */
+}
+@keyframes luces {
+  0% {
     color: rgb(241, 237, 237);
-    display: flex;
-    /* Hace que el texto se centre */
-    justify-content: center;
-    /* Centra el texto horizontalmente */
-    align-items: center;
-    /* Centra el texto verticalmente */
-    z-index: 2;
-    /* Asegura que el texto esté por encima de la capa oscura */
-    
+  }
+  50% {
+    color: #0b0d0f;
+  }
+  100% {
+    color: rgb(241, 237, 237);
+  }
 }
-@keyframes luces{
-    0% {color: rgb(241, 237, 237);}
-    50% {color: #0b0d0f;}
-    100% {color: rgb(241, 237, 237);}
-
-}
-
 
 .opcion a:hover {
-
-    color: #a2b5d2;
-    transform: scale(1.3);
-   
-
+  color: #a2b5d2;
+  transform: scale(1.3);
 }
 
 .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
 }
 
 .item:hover a {
-    transform: scale(1.4) translateY(-30px);
-    transition: ease-in-out 0.7s;
-    text-shadow:1px 1px 10px black ;
-    animation: luces 2s infinite ;
-    
-    
-    
+  transform: scale(1.4) translateY(-30px);
+  transition: ease-in-out 0.7s;
+  text-shadow: 1px 1px 10px black;
+  animation: luces 2s infinite;
 }
 
-
-
 .item a {
-    transition: 0.7s;
+  transition: 0.7s;
 }
 
 .item:hover .opcion {
-
-    transform: scale(0);
-    transition: ease-in-out 0.7s;
-    
+  transform: scale(0);
+  transition: ease-in-out 0.7s;
 }
 
-
-
-
-
-
-
 .item a {
-    text-decoration: none;
-    color: #e6e6e6;
-
+  text-decoration: none;
+  color: #e6e6e6;
 }
 
 .item a:hover {
-    color: white;
+  color: white;
 }
 
 .buscador-carrito {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #e6e6e6;
 }
-
-
-
